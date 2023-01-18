@@ -25,8 +25,8 @@ print('y = ')
 print(y)
 
 z = x + y
-print('y = ')
-print(y)
+print('z = ')
+print(z)
 
 l = np.linspace(1, 499, 250, dtype=int)
 print('l = ')
