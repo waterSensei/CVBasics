@@ -1,7 +1,6 @@
 import matplotlib.pyplot as plt
 import matplotlib.image as img
 import numpy as np
-from PIL import Image as pil
 
 mimg = img.imread('image/image.jpg')
 [row, column] = [len(mimg), len(mimg[0])]
@@ -14,7 +13,9 @@ mimgNoise[:, :, 0] = grey + noise
 mimgNoise[:, :, 1] = grey + noise
 mimgNoise[:, :, 2] = grey + noise
 mimgNoise[mimgNoise > 255] = 255
-plt.subplot(2, 2, 1)
+
+plt.figure
+plt.subplot(7, 2, 1)
 plt.title('Noise Added Image')
 plt.axis('off')
 plt.imshow(mimgNoise/255)
@@ -86,10 +87,10 @@ def myBilateralFilter(mimgNoise, kernelsize, sigD, sigR):
     return output_image
 
 
-# output_image_g1 = myGaussFilter(mimgNoise, 5, 2)
-# output_image_g2 = myGaussFilter(mimgNoise, 5, 0.5)
-# output_image_g3 = myGaussFilter(mimgNoise, 15, 2)
-# output_image_g4 = myGaussFilter(mimgNoise, 15, 5)
+output_image_g1 = myGaussFilter(mimgNoise, 5, 2)
+output_image_g2 = myGaussFilter(mimgNoise, 5, 0.5)
+output_image_g3 = myGaussFilter(mimgNoise, 15, 2)
+output_image_g4 = myGaussFilter(mimgNoise, 15, 5)
 
 output_image_bg1 = myBilateralFilter(mimg, 5, 2, 0.2)
 output_image_bg2 = myBilateralFilter(mimg, 5, 2, 1)
@@ -100,51 +101,65 @@ output_image_bg6 = myBilateralFilter(mimg, 15, 2, 1)
 output_image_bg7 = myBilateralFilter(mimg, 15, 18, 0.2)
 output_image_bg8 = myBilateralFilter(mimg, 15, 18, 1)
 
-# plt.subplot(2, 2, 2)
-# plt.imshow(output_image_g1)
-# plt.axis('off')
-# plt.title("Selfbuilt function \sigma = 2, K:5x5")
 
-# plt.subplot(2, 2, 3)
-# plt.imshow(output_image_g2)
-# plt.axis('off')
-# plt.title("Selfbuilt function \sigma = 0.5, K:5x5")
+plt.subplot(7, 2, 3)
+plt.imshow(output_image_g1)
+plt.axis('off')
+plt.title("Selfbuilt function \sigma = 2, K:5x5")
 
-# plt.subplot(2, 2, 4)
-# plt.imshow(output_image_g3)
-# plt.axis('off')
-# plt.title("Selfbuilt function \sigma = 2, K:15x15")
+plt.subplot(7, 2, 4)
+plt.imshow(output_image_g2)
+plt.axis('off')
+plt.title("Selfbuilt function \sigma = 0.5, K:5x5")
+
+plt.subplot(7, 2, 5)
+plt.imshow(output_image_g3)
+plt.axis('off')
+plt.title("Selfbuilt function \sigma = 2, K:15x15")
+
+plt.subplot(7, 2, 6)
+plt.imshow(output_image_g4)
+plt.axis('off')
+plt.title("Selfbuilt function \sigma = 5, K:15x15")
 
 
-plt.subplot(4, 3, 2)
+plt.subplot(7, 2, 7)
 plt.imshow(output_image_bg1)
+plt.axis('off')
 plt.title("K = 5, \sigma_d = 2, \sigma_r = 0.2")
 
-plt.subplot(4, 3, 3)
+plt.subplot(7, 2, 8)
 plt.imshow(output_image_bg2)
+plt.axis('off')
 plt.title("K = 5, \sigma_d = 2, \sigma_r = 1")
 
-plt.subplot(4, 3, 5)
+plt.subplot(7, 2, 9)
 plt.imshow(output_image_bg3)
+plt.axis('off')
 plt.title("K = 5, \sigma_d = 18, \sigma_r = 0.2")
 
-plt.subplot(4, 3, 6)
+plt.subplot(7, 2, 10)
 plt.imshow(output_image_bg4)
+plt.axis('off')
 plt.title("K = 5, \sigma_d = 18, \sigma_r = 1")
 
-plt.subplot(4, 3, 8)
+plt.subplot(7, 2, 11)
 plt.imshow(output_image_bg5)
+plt.axis('off')
 plt.title("K = 15, \sigma_d = 2, \sigma_r = 0.2")
 
-plt.subplot(4, 3, 9)
+plt.subplot(7, 2, 12)
 plt.imshow(output_image_bg6)
+plt.axis('off')
 plt.title("K = 15, \sigma_d = 2, \sigma_r = 1")
 
-plt.subplot(4, 3, 11)
+plt.subplot(7, 2, 13)
 plt.imshow(output_image_bg7)
+plt.axis('off')
 plt.title("K = 15, \sigma_d = 18, \sigma_r = 0.2")
 
-plt.subplot(4, 3, 12)
+plt.subplot(7, 2, 14)
 plt.imshow(output_image_bg8)
+plt.axis('off')
 plt.title("K = 15, \sigma_d = 18, \sigma_r = 1")
 plt.show()
